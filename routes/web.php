@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\ArticleController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -22,10 +23,17 @@ Route::get('/', function () {
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
     ]);
-});
+})->name('home');
 
-Route::get('/dashboard', function () {
-    return Inertia::render('Dashboard');
-})->middleware(['auth', 'verified'])->name('dashboard');
+/* Public articles routes */
+Route::resource('articles', ArticleController::class)->only(['index', 'show']);
+
+Route::group(['prefix' => 'dashboard', 'middleware' => 'auth', 'verified', 'as' => 'dashboard.'], function () {
+    Route::get('/', function () {
+        return Inertia::render('Dashboard');
+    })->name('home');
+
+    Route::resource('articles', ArticleController::class);
+});
 
 require __DIR__.'/auth.php';
