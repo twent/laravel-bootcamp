@@ -87,10 +87,14 @@ class ArticleController extends Controller
      * Remove the specified resource from storage.
      *
      * @param  \App\Models\Article  $article
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\RedirectResponse|\Illuminate\Routing\Redirector
      */
     public function destroy(Article $article)
     {
-        //
+        $this->authorize('delete', $article);
+
+        $article->delete();
+
+        return redirect(route('dashboard.articles.index'));
     }
 }
