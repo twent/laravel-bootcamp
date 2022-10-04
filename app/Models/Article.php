@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use App\Events\ArticleCreated;
 use Carbon\Carbon;
 use Illuminate\Database\Eloquent\Casts\Attribute;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
@@ -16,6 +17,10 @@ class Article extends Model
     protected $fillable = [
         'title',
         'text',
+    ];
+
+    protected $dispatchesEvents = [
+        'created' => ArticleCreated::class,
     ];
 
     /**
