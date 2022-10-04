@@ -21,7 +21,7 @@ const form = useForm({
 <template>
     <Head title="Articles" />
 
-    <GuestLayout>
+    <AuthenticatedLayout>
         <div class="max-w-2xl mx-auto p-4 sm:p-6 lg:p-8">
             <form @submit.prevent="form.post(route('dashboard.articles.store'), { onSuccess: () => form.reset() })">
                 <div>
@@ -52,5 +52,5 @@ const form = useForm({
                 />
             </div>
         </div>
-    </GuestLayout>
+    </AuthenticatedLayout>
 </template>

@@ -25,9 +25,6 @@ Route::get('/', function () {
     ]);
 })->name('home');
 
-/* Public articles routes */
-Route::resource('articles', ArticleController::class)->only(['index', 'show']);
-
 Route::group(['prefix' => 'dashboard', 'middleware' => 'auth', 'verified', 'as' => 'dashboard.'], function () {
     Route::get('/', function () {
         return Inertia::render('Dashboard');
