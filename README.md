@@ -1,6 +1,6 @@
 ## Laravel Bootcamp Project
 
-> Task was changed for simplest blog
+> Task was changed to the simplest blog
 
 ### Used for:
 1. SQLite
